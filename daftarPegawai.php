@@ -632,7 +632,7 @@ include 'koneksi.php';
                                                             $lokasi = $_FILES['foto']['tmp_name'];
                                                             move_uploaded_file($lokasi, "foto_pegawai/" . $nama);
                                                             $koneksi->query("INSERT INTO pegawai
-                                        (nama_pegawai,nip,jk,tempat_lahir,tgl_lahir,alamat,agama,pendidikan_terakhir,gol_pegawai,status_kawin,pangkat,jabatan,telepon,foto,email,keterangan) VALUES ('$_POST[nama_pegawai]','$_POST[nip]','$_POST[jk]','$_POST[tempat_lahir]','$_POST[tgl_lahir]','$_POST[alamat]','$_POST[agama]','$_POST[pendidikan_terakhir]','$_POST[gol_pegawai]','$_POST[status_kawin]','$_POST[pangkat]','$_POST[jabatan]','$_POST[telepon]','$nama','$_POST[email]',' $_POST[keterangan]'");
+                                                            (nama_pegawai,nip,jk,tempat_lahir,tgl_lahir,alamat,agama,pendidikan_terakhir,gol_pegawai,status_kawin,pangkat,jabatan,telepon,foto,email,keterangan) VALUES ('$_POST[nama_pegawai]','$_POST[nip]','$_POST[jk]','$_POST[tempat_lahir]','$_POST[tgl_lahir]','$_POST[alamat]','$_POST[agama]','$_POST[pendidikan_terakhir]','$_POST[gol_pegawai]','$_POST[status_kawin]','$_POST[pangkat]','$_POST[jabatan]','$_POST[telepon]','$nama','$_POST[email]',' $_POST[keterangan]'");
 
                                                             echo "<script>alert('Data Berhasil Ditambah');</script>";
                                                             echo "<script>location='daftarPegawai.php';</script>";

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2022 at 04:40 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Waktu pembuatan: 03 Sep 2022 pada 05.26
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -37,7 +36,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `foto`) VALUES
@@ -46,7 +45,7 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gaji`
+-- Struktur dari tabel `gaji`
 --
 
 CREATE TABLE `gaji` (
@@ -63,17 +62,18 @@ CREATE TABLE `gaji` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gaji`
+-- Dumping data untuk tabel `gaji`
 --
 
 INSERT INTO `gaji` (`id_gaji`, `id_pegawai`, `tgl_terima`, `gaji_pokok`, `tunjangan_kinerja`, `tunjangan_pasangan`, `tunjangan_anak`, `tunjangan_makan`, `tunjangan_jabatan`, `total`) VALUES
 (1, 1, '2022-07-03', '3000000', '5000000', '150000', '75000', '35000', '2000000', '5760000'),
-(4, 2, '2022-07-08', '3500000', '200000', '200000', '150000', '200000', '300000', '4550000');
+(4, 2, '2022-07-08', '3500000', '200000', '200000', '150000', '200000', '300000', '4550000'),
+(5, 3, '2022-07-01', '3300000', '0', '60000', '450000', '40000', '540000', '4390000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasi`
+-- Struktur dari tabel `mutasi`
 --
 
 CREATE TABLE `mutasi` (
@@ -86,7 +86,7 @@ CREATE TABLE `mutasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mutasi`
+-- Dumping data untuk tabel `mutasi`
 --
 
 INSERT INTO `mutasi` (`id_mutasi`, `id_pegawai`, `tgl_mutasi`, `unit_lama`, `unit_baru`, `alasan`) VALUES
@@ -95,7 +95,7 @@ INSERT INTO `mutasi` (`id_mutasi`, `id_pegawai`, `tgl_mutasi`, `unit_lama`, `uni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pangkat`
+-- Struktur dari tabel `pangkat`
 --
 
 CREATE TABLE `pangkat` (
@@ -110,16 +110,17 @@ CREATE TABLE `pangkat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pangkat`
+-- Dumping data untuk tabel `pangkat`
 --
 
 INSERT INTO `pangkat` (`id_pangkat`, `id_pegawai`, `prestasi_kerja`, `masa_kerja`, `pangkat_tmt_lama`, `pangkat_tmt_baru`, `gaji_pokok_lama`, `sk_pangkat_terakhir`) VALUES
-(1, 1, 'Memuaskan', '4 Tahun 5 Bulan', '2022-07-03', '2023-02-03', '3000000', 'berkas jilid proposal.pdf');
+(1, 1, 'Memuaskan', '4 Tahun 5 Bulan', '2022-07-03', '2023-02-03', '3000000', 'berkas jilid proposal.pdf'),
+(2, 3, 'Bagus', '10 Tahun', '2007-04-01', '2019-04-01', '3300000', 'sk terakhir Rongsli.pdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
+-- Struktur dari tabel `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -139,21 +140,23 @@ CREATE TABLE `pegawai` (
   `telepon` varchar(13) NOT NULL,
   `foto` varchar(500) NOT NULL,
   `email` varchar(300) NOT NULL,
+  `keterangan` text NOT NULL,
   `status` varchar(100) NOT NULL DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pegawai`
+-- Dumping data untuk tabel `pegawai`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `nip`, `jk`, `tempat_lahir`, `tgl_lahir`, `alamat`, `agama`, `pendidikan_terakhir`, `gol_pegawai`, `status_kawin`, `pangkat`, `jabatan`, `telepon`, `foto`, `email`, `status`) VALUES
-(1, 'Julia Mariance N. Fuah, S.Kom', '19750708199825178', 'Perempuan', 'Kupang', '1977-05-14', 'Oebobo', 'Kristen Protestan', 'DIPLOMA IV / STRATA I', 'IIId', 'Kawin', 'Penata Tingkat I', '', '085111253741', 'pegawai1.jpg', 'julia@gmail.com', 'Aktif'),
-(2, 'Revansa Elimanafe', '12345678911234597', 'Laki - Laki', 'Kupang', '2000-07-12', 'Liliba', 'Kristen Protestan', 'DIPLOMA IV / STRATA I', 'IIIa', 'Belum Kawin', 'Juru Tingkat I', '', '082234567891', 'pegawai2.jpg', 'revan@gmail.com', 'Aktif');
+INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `nip`, `jk`, `tempat_lahir`, `tgl_lahir`, `alamat`, `agama`, `pendidikan_terakhir`, `gol_pegawai`, `status_kawin`, `pangkat`, `jabatan`, `telepon`, `foto`, `email`, `keterangan`, `status`) VALUES
+(1, 'Julia Mariance N. Fuah, S.Kom', '19750708199825178', 'Perempuan', 'Kupang', '1977-05-14', 'Oebobo', 'Kristen Protestan', 'DIPLOMA IV / STRATA I', 'IIId', 'Kawin', 'Penata Tingkat I', 'Kasubag Kepegawaian', '085111253741', 'pegawai1.jpg', 'julia@gmail.com', '', 'Aktif'),
+(3, 'Rongsli N. Holbala', '197804172007011014', 'Laki - Laki', 'Bolok', '1978-04-17', 'RT/02, RW/01 Bolok', 'Kristen Protestan', 'DIPLOMA IV / STRATA I', 'IIIc', 'Kawin', 'Penata', 'Kasubag Kepegawaian', '081138517478', 'kasubag.jpg', 'holbala1978@gmail.com', '', 'Aktif'),
+(4, 'desty', '1234567890223', 'Perempuan', 'sabu', '2000-12-31', 'sikumana', 'Kristen Protestan', 'STRATA II', 'IIIb', 'Belum Kawin', 'Pembina Utama Muda', '-', '082234567987', 'absen.jpg', 'desty@gmail.com', '', 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pensiun`
+-- Struktur dari tabel `pensiun`
 --
 
 CREATE TABLE `pensiun` (
@@ -166,7 +169,7 @@ CREATE TABLE `pensiun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pensiun`
+-- Dumping data untuk tabel `pensiun`
 --
 
 INSERT INTO `pensiun` (`id_pensiun`, `id_pegawai`, `masa_kerja_golongan`, `tgl_pensiun`, `masa_kerja`, `sk_pensiun`) VALUES
@@ -177,77 +180,77 @@ INSERT INTO `pensiun` (`id_pensiun`, `id_pegawai`, `masa_kerja_golongan`, `tgl_p
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `gaji`
+-- Indeks untuk tabel `gaji`
 --
 ALTER TABLE `gaji`
   ADD PRIMARY KEY (`id_gaji`);
 
 --
--- Indexes for table `mutasi`
+-- Indeks untuk tabel `mutasi`
 --
 ALTER TABLE `mutasi`
   ADD PRIMARY KEY (`id_mutasi`);
 
 --
--- Indexes for table `pangkat`
+-- Indeks untuk tabel `pangkat`
 --
 ALTER TABLE `pangkat`
   ADD PRIMARY KEY (`id_pangkat`);
 
 --
--- Indexes for table `pegawai`
+-- Indeks untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indexes for table `pensiun`
+-- Indeks untuk tabel `pensiun`
 --
 ALTER TABLE `pensiun`
   ADD PRIMARY KEY (`id_pensiun`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `gaji`
+-- AUTO_INCREMENT untuk tabel `gaji`
 --
 ALTER TABLE `gaji`
-  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `mutasi`
+-- AUTO_INCREMENT untuk tabel `mutasi`
 --
 ALTER TABLE `mutasi`
-  MODIFY `id_mutasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_mutasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `pangkat`
+-- AUTO_INCREMENT untuk tabel `pangkat`
 --
 ALTER TABLE `pangkat`
-  MODIFY `id_pangkat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pangkat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `pegawai`
+-- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `pensiun`
+-- AUTO_INCREMENT untuk tabel `pensiun`
 --
 ALTER TABLE `pensiun`
   MODIFY `id_pensiun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
